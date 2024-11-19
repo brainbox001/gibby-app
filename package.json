@@ -4,7 +4,10 @@
   "description": "A stock market app",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jest dist/ --detectOpenHandles",
+    "start": "node dist/index.js",
+    "dev": "nodemon dist/index.js",
+    "migrate": "knex migrate:latest --knexfile dist/dbConfig/knexfile.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,7 @@
   },
   "homepage": "https://github.com/brainbox001/gibby-app#readme",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/knex": "^0.15.2",

@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
 import db from "../../dbConfig/dbConfig";
-import sendMail from "./sendMail";
+import mailObj from "./sendMail";
 
 interface Body {
     firstName : string;
     lastName : string;
     email : string;
-    password : string;
-    
+    password : string;   
 }
 
 export default async function register(req:Request, res:Response) : Promise<any> {
@@ -32,7 +31,7 @@ export default async function register(req:Request, res:Response) : Promise<any>
             updated_at : new Date()
         };
         await db('users').insert(newUser);
-        const code = await sendMail(email, firstName);
+        const code = await mailObj.sendMail(email, firstName);
         encrypted = await encryptDecrypt(code);
         
     } catch (error) {

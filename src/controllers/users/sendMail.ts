@@ -10,7 +10,15 @@ const transporter = nodemailer.createTransport({
     },
   });
 
-export default async function sendMail(email:string, firstName:string) {
+interface MailObj{
+  sendMail : (email : string, firstName : string) => Promise<string> 
+};
+
+const  mailObj : MailObj  = {
+  sendMail
+};
+
+async function sendMail(email:string, firstName:string) : Promise<string>{
     let code = '';
     for (let i = 0; i< 6; i++) {
         let generated = Math.floor(Math.random() *10)
@@ -29,3 +37,4 @@ export default async function sendMail(email:string, firstName:string) {
       });
       return code;
 };
+export default mailObj;

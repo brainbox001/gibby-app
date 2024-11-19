@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import db from "../../dbConfig/dbConfig";
-import sendMail from "./sendMail";
+import mailObj from "./sendMail";
 import { encryptDecrypt } from "./register";
 import { v4 as uuidv4 } from "uuid";
 
@@ -30,7 +30,7 @@ export default async function login(req:Request, res:Response) : Promise<any> {
         if(!user.emailIsVerified){
             const cookie = req.cookies.user;
             if (!cookie) {
-                const code = await sendMail(email, user.firstName);
+                const code = await mailObj.sendMail(email, user.firstName);
                 const encrypted = await encryptDecrypt(code);
                 res.cookie('user', encrypted, {
                     httpOnly : true
@@ -41,7 +41,7 @@ export default async function login(req:Request, res:Response) : Promise<any> {
         const uuid = uuidv4();
         await db('session').insert({email, uuid}).onConflict().merge();
 
-        res.cookie('session', uuid,{
+        res.cookie('session', JSON.stringify({email, uuid}),{
             httpOnly: true,
             expires : new Date(Date.now() + (60 * 60 * 24 * 7 * 1000))
         });
