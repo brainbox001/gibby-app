@@ -9,7 +9,7 @@ const app = express();
 const port = 3001;
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://gibby-frontend.onrender.com',
   credentials: true,
 }));
 
