@@ -18,9 +18,8 @@ export default async function register(req:Request, res:Response) : Promise<any>
     try{
 
         const userExists = await db('users').where({ email }).first().count();
-        console.log(userExists);
         
-        if(userExists['count(*)']) return res.status(400).json({error : 'User with email address already exists, login'});
+        if(userExists['count']) return res.status(400).json({error : 'User with email address already exists, login'});
         
         email = email.toLowerCase();
         const newUser = {
@@ -44,6 +43,7 @@ export default async function register(req:Request, res:Response) : Promise<any>
     res.cookie('user', encrypted, {
         httpOnly: true,
         expires: new Date(Date.now() + 5 * 60 * 1000),
+        sameSite : 'none'
     });
 
     res.status(201).json({message: 'successfully registered, please verify your email', email});
