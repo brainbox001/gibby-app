@@ -43,7 +43,6 @@ export default async function register(req:Request, res:Response) : Promise<any>
     res.cookie('user', encrypted, {
         httpOnly: true,
         expires: new Date(Date.now() + 5 * 60 * 1000),
-        secure: false,
     });
 
     res.status(201).json({message: 'successfully registered, please verify your email', email});
@@ -52,16 +51,14 @@ export default async function register(req:Request, res:Response) : Promise<any>
 export async function encryptDecrypt(code : string) {
     let crypted = '';
     const data = {
-        '0' : '5',
-        '1' : '6',
-        '2' : '7',
-        '3' : '8',
-        '4' : '9',
-        '5' : '0',
-        '6' : '1',
-        '7' : '2',
-        '8' : '3',
-        '9' : '4'
+        '1' : '5',
+        '2' : '6',
+        '3' : '7',
+        '4' : '8',
+        '5' : '1',
+        '6' : '2',
+        '7' : '3',
+        '8' : '4',
     };
     for (const char of code) {
         if(char in data) crypted += data[char as keyof typeof data];

@@ -24,11 +24,11 @@ const  mailObj : MailObj  = {
 async function sendMail(email:string, firstName:string) : Promise<string>{
     let code = '';
     for (let i = 0; i< 6; i++) {
-        let generated = Math.floor(Math.random() *10)
+        let generated = Math.floor(Math.random() *9) + 1;
        code += generated
     }
     await transporter.sendMail({
-        from: '"Novel-app" <momsdboy@gmail.com>',
+        from: '"Gibby" <momsdboy@gmail.com>',
         to: email, 
         subject: "User verification code",
         html: `

@@ -36,7 +36,6 @@ export default async function login(req:Request, res:Response) : Promise<any> {
                 res.cookie('user', encrypted, {
                     httpOnly : true,
                     expires: new Date(Date.now() + 5 * 60 * 1000),
-                    secure: false,
                 });
             };
             return res.status(215).json({message : 'verify your email', email});

@@ -13,6 +13,7 @@ export default async function verifyEmail(req:Request, res:Response) : Promise<a
     const {code, email, forPasswordChange} = req.body;
     if(!code || !email) return res.status(400).json({error : 'code not provided'});
     const cookie = req.cookies.user;
+
     if(!cookie) return res.status(309).json({redirectTo : '/'});
     const decrypted = await encryptDecrypt(cookie);
     if (code !== decrypted) return res.status(400).json({error : 'Incorrect code'});
@@ -23,7 +24,6 @@ export default async function verifyEmail(req:Request, res:Response) : Promise<a
 
         res.clearCookie('user',{
             httpOnly: true,
-            secure: false,
         });
         if(forPasswordChange) {
             return res.status(215).json({message : 'code verified'});
@@ -36,7 +36,6 @@ export default async function verifyEmail(req:Request, res:Response) : Promise<a
         res.cookie('session', JSON.stringify({email, uuid}),{
             httpOnly: true,
             expires : new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)),
-            secure: false,
         });
 
     } catch (error) {
