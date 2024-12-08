@@ -13,7 +13,7 @@ export default async function verifyEmail(req:Request, res:Response) : Promise<a
     const {code, email, forPasswordChange} = req.body;
     if(!code || !email) return res.status(400).json({error : 'code not provided'});
     const cookie = req.cookies.user;
-
+    console.log(req.cookies);
     if(!cookie) return res.status(309).json({redirectTo : '/'});
     const decrypted = await encryptDecrypt(cookie);
     if (code !== decrypted) return res.status(400).json({error : 'Incorrect code'});
