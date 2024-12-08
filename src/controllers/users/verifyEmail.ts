@@ -24,6 +24,8 @@ export default async function verifyEmail(req:Request, res:Response) : Promise<a
 
         res.clearCookie('user',{
             httpOnly: true,
+            sameSite : 'none',
+            secure : true
         });
         if(forPasswordChange) {
             return res.status(215).json({message : 'code verified'});

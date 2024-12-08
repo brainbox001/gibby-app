@@ -4,7 +4,9 @@ export default async function logout(req:Request, res:Response) : Promise<any> {
     const cookies = req.cookies;
     if (cookies['session']){
         res.clearCookie('session', {
-            httpOnly: true
+            httpOnly: true,
+            sameSite : 'none',
+            secure : true
         });
         return res.status(200).json({message: 'Logout successful'});
     };
