@@ -36,7 +36,8 @@ export default async function verifyEmail(req:Request, res:Response) : Promise<a
         res.cookie('session', JSON.stringify({email, uuid}),{
             httpOnly: true,
             expires : new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)),
-            sameSite : 'none'
+            sameSite : 'none',
+            secure : true
         });
 
     } catch (error) {

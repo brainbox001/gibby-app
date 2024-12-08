@@ -43,7 +43,8 @@ export default async function register(req:Request, res:Response) : Promise<any>
     res.cookie('user', encrypted, {
         httpOnly: true,
         expires: new Date(Date.now() + 5 * 60 * 1000),
-        sameSite : 'none'
+        sameSite : 'none',
+        secure : true
     });
 
     res.status(201).json({message: 'successfully registered, please verify your email', email});

@@ -36,7 +36,8 @@ export default async function login(req:Request, res:Response) : Promise<any> {
                 res.cookie('user', encrypted, {
                     httpOnly : true,
                     expires: new Date(Date.now() + 5 * 60 * 1000),
-                    sameSite : 'none'
+                    sameSite : 'none',
+                    secure : true
                 });
             };
             return res.status(215).json({message : 'verify your email', email});
@@ -47,7 +48,8 @@ export default async function login(req:Request, res:Response) : Promise<any> {
         res.cookie('session', JSON.stringify({email, uuid}),{
             httpOnly: true,
             expires : new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)),
-            sameSite : 'none'
+            sameSite : 'none',
+            secure : true
         });
 
     } catch (error) {
