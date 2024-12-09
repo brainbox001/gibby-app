@@ -7,6 +7,7 @@ dotenv.config();
 export default async function verifyPayment(req: Request, res: Response): Promise<any> {
 	const body = req.body;
 	let { target, startAmount, reference, goal, duration, add, email, _transRef } = body;
+	console.log('verifify paymeny received');
 
 	if (!startAmount || !reference || !goal || !email) return res.status(400).json({ error: 'Incomplete request' });
 
@@ -49,6 +50,7 @@ export default async function verifyPayment(req: Request, res: Response): Promis
 	const userBalance = await db('users').where({ email }).first().select('balance');
 	const balance = userBalance.balance + startAmount;
 	if (userBalance) await db('users').where({ email }).first().update({ balance });
+	console.log('verify payment - ', res.getHeaders())
 	res.status(200).json({ message: 'payment completed' });
 };
 
