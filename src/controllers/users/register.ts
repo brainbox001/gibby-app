@@ -17,9 +17,10 @@ export default async function register(req:Request, res:Response) : Promise<any>
     let encrypted: string;
     try{
 
-        const userExists = await db('users').where({ email }).first().count();
+        let userExists = await db('users').where({ email }).first().count();
+        userExists = typeof userExists['count'] === 'string' ? parseInt(userExists['count']) : userExists['count'];
         console.log(userExists);
-        if(userExists['count']) return res.status(400).json({error : 'User with email address already exists, login'});
+        if(userExists) return res.status(400).json({error : 'User with email address already exists, login'});
         
         email = email.toLowerCase();
         const newUser = {
