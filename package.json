@@ -1,0 +1,53 @@
+{
+  "name": "gibby-app",
+  "version": "1.0.0",
+  "description": "A stock market app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest dist/ --detectOpenHandles",
+    "start": "node dist/index.js",
+    "dev": "nodemon dist/index.js",
+    "rollback" : "knex migrate:rollback --all --env production --knexfile dist/dbConfig/knexfile.js",
+    "migrate": "knex migrate:latest --knexfile dist/dbConfig/knexfile.js --env production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brainbox001/gibby-app.git"
+  },
+  "keywords": [
+    "[gibby]"
+  ],
+  "author": "marcus-dev <momsdboy@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brainbox001/gibby-app/issues"
+  },
+  "homepage": "https://github.com/brainbox001/gibby-app#readme",
+  "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/knex": "^0.15.2",
+    "@types/node": "^22.8.7",
+    "@types/nodemailer": "^6.4.16",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.8",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "knex": "^3.1.0",
+    "nodemailer": "^6.9.16",
+    "pg": "^8.13.1",
+    "sqlite3": "^5.1.7",
+    "uuid": "^11.0.2"
+  }
+}
