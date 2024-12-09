@@ -18,7 +18,7 @@ export default async function register(req:Request, res:Response) : Promise<any>
     try{
 
         const userExists = await db('users').where({ email }).first().count();
-        
+        console.log(userExists);
         if(userExists['count']) return res.status(400).json({error : 'User with email address already exists, login'});
         
         email = email.toLowerCase();
