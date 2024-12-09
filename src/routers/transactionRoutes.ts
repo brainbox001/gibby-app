@@ -7,7 +7,7 @@ import cors from 'cors';
 
 const transactionRoutes = express.Router();
 
-app.use(cors({
+transactionRoutes.use(cors({
   origin: 'https://gibby-frontend.onrender.com',
   credentials: true,
 }));
