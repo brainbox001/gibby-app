@@ -1,9 +1,7 @@
-# gibby-app
-A stock market/fixed deposit app
 # Gibby-app
-Respository for a demo wallet application.
+A stock backend rest api for a savings application.
 ### URL
-  + App's url - [https://marcus-daniel-lendsqr-be-test.onrender.com](https://gibby-app.onrender.com/) .
+  + App's url - [https://gibby-app.onrender.com](https://gibby-app.onrender.com/) .
 ### Note :
 + If trying to access the app and it delays to load, that's because the cloud service has spin down the app due to inactivity, you just have to wait for about 2 minutes or less.
 
