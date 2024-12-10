@@ -1,6 +1,6 @@
 # gibby-app
 A stock market/fixed deposit app
-# Demo-credit
+# Gibby-app
 Respository for a demo wallet application.
 ### URL
   + App's url - [https://marcus-daniel-lendsqr-be-test.onrender.com](https://gibby-app.onrender.com/) .
