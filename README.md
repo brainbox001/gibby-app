@@ -1,5 +1,5 @@
 # Gibby-app
-A stock backend rest api for a savings application.
+A backend rest api for a savings application.
 ### URL
   + App's url - [https://gibby-app.onrender.com](https://gibby-app.onrender.com/) .
 ### Note :
