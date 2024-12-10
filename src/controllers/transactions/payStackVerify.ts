@@ -33,7 +33,7 @@ export default async function verifyPayment(req: Request, res: Response): Promis
 
 	duration = Date.now() +  parseInt(duration);
 	duration = duration.toString();
-	console.log('type of duration -', typeof duration);
+	
 	target = parseInt(target);
 
 	const newTransaction = {
@@ -52,7 +52,7 @@ export default async function verifyPayment(req: Request, res: Response): Promis
 	const userBalance = await db('users').where({ email }).first().select('balance');
 	const balance = userBalance.balance + startAmount;
 	if (userBalance) await db('users').where({ email }).first().update({ balance });
-	console.log('verify payment - ', res.getHeaders());
+
 	res.status(200).json({ message: 'payment completed' });
 };
 
