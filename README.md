@@ -29,7 +29,7 @@ The main purpose of the app is to allow users specify a goal and save towards it
 ### Endpoints
 + **GET / :**
   - returns a welcome message for unauthenticated users and user's details for authenticated users.
-This is a fullstack application so the app would accept request from the frontend only.
+**This is a fullstack application so the app would accept request from the frontend only.**
 ## Test
   + App is tested with unit testing and integration testing.
 
