@@ -5,7 +5,7 @@ export async function setAuthStatus(req:Request, res:Response, next:NextFunction
     req.isAuthenticated = false;
     const session = req.cookies.session;
     const path = req.path;
-
+    // console.log(session);
     if(session) {
         const {email, uuid} = JSON.parse(session);
 
@@ -19,7 +19,7 @@ export async function setAuthStatus(req:Request, res:Response, next:NextFunction
                     if(user) {
                         delete user.password;
                         delete user.updated_at;
-                        return res.status(309).json(user);
+                        return res.status(209).json(user);
                     };
                 }
             };

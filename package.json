@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest dist/ --detectOpenHandles",
     "start": "node dist/index.js",
-    "dev": "nodemon dist/index.js",
+    "dev": "nodemon dist/index.js --exec ts-node src/index.ts",
     "rollback" : "knex migrate:rollback --all --env production --knexfile dist/dbConfig/knexfile.js",
     "migrate": "knex migrate:latest --knexfile dist/dbConfig/knexfile.js --env production"
   },

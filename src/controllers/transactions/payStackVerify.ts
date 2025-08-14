@@ -7,12 +7,14 @@ dotenv.config();
 export default async function verifyPayment(req: Request, res: Response): Promise<any> {
 	const body = req.body;
 	let { target, startAmount, reference, goal, duration, add, email, _transRef } = body;
-	console.log('verifify paymeny received');
+	// console.log('verifify paymeny received');
 
 	if (!startAmount || !reference || !goal || !email) return res.status(400).json({ error: 'Incomplete request' });
 
 	const transaction = await db('transactions').where({ reference }).first();
 	if (transaction) return res.status(319).json({ error: 'redirect transaction already completed' });
+
+	// console.log('verifify paymeny received', body);
 
 	const status = await verify(reference);
 
@@ -69,6 +71,7 @@ async function verify(reference: string) {
 	try {
 		const response = await axios(config);
 		data = response.data;
+		// console.log("verify response", data);
 		return { status: data.status, data }
 	} catch (error: any) {
 

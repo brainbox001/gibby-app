@@ -17,7 +17,7 @@ const config: { [key: string]: Knex.Config } = {
 
         conn.run('PRAGMA foreign_keys = ON', (err: typeof Error) => {
           if (err) {
-            console.log(err)
+            // console.log(err)
             done(err, conn);
           }
           else {

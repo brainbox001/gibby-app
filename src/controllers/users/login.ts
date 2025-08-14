@@ -4,11 +4,6 @@ import mailObj from "./sendMail";
 import { encryptDecrypt } from "./register";
 import { v4 as uuidv4 } from "uuid";
 
-interface Body {
-    email : string;
-    password : string;
-}
-
 interface User {
     firstName : string;
     lastName : string;
@@ -20,10 +15,13 @@ interface User {
 export default async function login(req:Request, res:Response) : Promise<any> {
     const body = req.body;
     const {email, password} = body;
+    // console.log('login request received');
     if (!email || !password) return res.status(400).json({error : 'Invalid credentials provided'});
     let user : User;
     try {
         user = await db('users').where({email}).first().select('firstName', 'lastName', 'email', 'password', 'emailIsVerified');
+
+        console.log('user found', user);
 
         if(!user || password !== user.password) return res.status(400).json({error : 'Incorrect email or password'});
 

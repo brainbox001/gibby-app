@@ -10,18 +10,20 @@ async function newDeposit (req:Request, res:Response) : Promise<any> {
     const {email} = JSON.parse(session);
     const uuid = uuidv4();
 
+    let url =  "https://gibby-frontend.onrender" //"http://localhost:5173"
     let callback : string;
 
     if(add && _transRef) {
-        callback = `https://gibby-frontend.onrender.com/trans/verify?startAmount=${startAmount}&goal=${encodeURIComponent(goal)}&email=${email}&_transRef=${_transRef}&add=${add}`;
+        callback = `${url}/dashboard/trans/verify?startAmount=${startAmount}&goal=${encodeURIComponent(goal)}&email=${email}&_transRef=${_transRef}&add=${add}`;
     }
     else {
         if(!startAmount || !target || !duration || !goal) return res.status(400).json({error : 'Bad request'});
 
-     callback = `https://gibby-frontend.onrender.com/trans/verify?target=${target}&startAmount=${startAmount}&duration=${duration}&goal=${encodeURIComponent(goal)}&email=${email}`;
+     callback = `${url}/dashboard/trans/verify?target=${target}&startAmount=${startAmount}&duration=${duration}&goal=${encodeURIComponent(goal)}&email=${email}`;
     };
     
     const response = await initializePayment(email, startAmount, callback, uuid);
+    // console.log("initializePayment response", response);
     res.status(response.status).json(response.data)
 };
 
