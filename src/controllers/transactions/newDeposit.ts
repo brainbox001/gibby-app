@@ -10,7 +10,7 @@ async function newDeposit (req:Request, res:Response) : Promise<any> {
     const {email} = JSON.parse(session);
     const uuid = uuidv4();
 
-    let url =  "https://gibby-frontend.onrender" //"http://localhost:5173"
+    let url =  "https://gibby-frontend.onrender.com" //"http://localhost:5173"
     let callback : string;
 
     if(add && _transRef) {
